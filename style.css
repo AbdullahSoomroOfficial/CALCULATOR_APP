@@ -15,7 +15,6 @@ body {
 
 .app {
     background-color: black;
-    color: rgb(0, 0, 0);
     height: 70%;
     width: 50%;
     display: grid;
@@ -26,6 +25,10 @@ body {
     background-color: rgb(90, 89, 89);
     margin: 4px;
     margin-bottom: 0px;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    color: white;
 }
 
 .buttons {
@@ -42,6 +45,24 @@ body {
     align-items: center;
 }
 
+.btn-item:hover {
+    background-color: rgb(170, 170, 170);
+}
+
+
 .item-15 {
     background-color: rgb(247, 189, 81);
+}
+
+.item-15:hover {
+    background-color: rgb(213, 140, 4);
+}
+
+.item-17 {
+    grid-column: 1 / 5;
+    background-color: rgb(7, 170, 7);
+}
+
+.item-17:hover {
+    background-color: rgb(3, 157, 3);
 }
