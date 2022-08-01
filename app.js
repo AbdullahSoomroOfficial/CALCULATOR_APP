@@ -20,18 +20,50 @@ const clearScreen = document.querySelector('.item-17');
 
 const buttons = [zero, one, two, three, four, five, six, seven, eight, nine, period, divide, mutltiply, minus, plus];
 
-buttons.forEach(function(element) {
-    element.addEventListener('click', function() {
+buttons.forEach(function (element) {
+    element.addEventListener('click', function () {
         const value = this.innerText;
         screen.innerText += value;
     });
 });
 
-clearScreen.addEventListener('click', function() {
+clearScreen.addEventListener('click', function () {
     screen.innerText = '';
 });
 
-equalTo.addEventListener('click', function() {
-    const calc = screen.innerText;
+equalTo.addEventListener('click', function () {
+    const str = screen.innerText;
     //start calculate
-})
+    const charArr = [...str];
+
+    let operand = null;
+    let operator = null;
+    // let decimal = false;
+    let exp = [];
+
+    for (let i = 0; i < charArr.length; i++) {
+        if (isNaN(charArr[i])) {
+            switch (charArr[i]) {
+                case '/':
+                    operator = '/'
+                    break;
+                case '*':
+                    operator = '*'
+                    break;
+                case '-':
+                    operator = '-'
+                    break;
+                case '+':
+                    operator = '+'
+                    break;
+                case '.':
+                    // decimal = true;
+                    exp[exp.length] = parseFloat(exp[exp.length] + '.')
+                    break;
+            }
+        } else {
+
+        }
+    }
+
+});
