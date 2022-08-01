@@ -24,5 +24,14 @@ buttons.forEach(function(element) {
     element.addEventListener('click', function() {
         const value = this.innerText;
         screen.innerText += value;
-    })
+    });
+});
+
+clearScreen.addEventListener('click', function() {
+    screen.innerText = '';
+});
+
+equalTo.addEventListener('click', function() {
+    const calc = screen.innerText;
+    //start calculate
 })
