@@ -27,43 +27,50 @@ buttons.forEach(function (element) {
     });
 });
 
-clearScreen.addEventListener('click', function () {
+function clear() {
     screen.innerText = '';
-});
+}
+
+clearScreen.addEventListener('click', clear);
+
+const operations = {
+    '/': function (x, y) {
+        return parseFloat(x) / parseFloat(y);
+    },
+    '*': function (x, y) {
+        return parseFloat(x) * parseFloat(y);
+    },
+    '-': function (x, y) {
+        return parseFloat(x) - parseFloat(y);
+    },
+    '+': function (x, y) {
+        //i use parseFloat here becuase + operator here work as concatenation not plus. 
+        return parseFloat(x) + parseFloat(y);
+    }
+}
 
 equalTo.addEventListener('click', function () {
     const str = screen.innerText;
+    clear();
     //start calculate
-    const charArr = [...str];
-
-    let operand = null;
-    let operator = null;
-    // let decimal = false;
-    let exp = [];
-
-    for (let i = 0; i < charArr.length; i++) {
-        if (isNaN(charArr[i])) {
-            switch (charArr[i]) {
-                case '/':
-                    operator = '/'
-                    break;
-                case '*':
-                    operator = '*'
-                    break;
-                case '-':
-                    operator = '-'
-                    break;
-                case '+':
-                    operator = '+'
-                    break;
-                case '.':
-                    // decimal = true;
-                    exp[exp.length] = parseFloat(exp[exp.length] + '.')
-                    break;
+    // I am using regex here to split operators and operands
+    const charArr = str.split(/([/,*,\-,+])/);
+    const operators = ['/', '*', '-', '+'];
+    for (let i = 0; i < operators.length; i++) {
+        for (let j = 0; j < charArr.length; j++) {
+            if (charArr[j] === operators[i]) {
+                const preOperand = charArr[j - 1];
+                const postOperand = charArr[j + 1];
+                const computedValue = operations[operators[i]](preOperand, postOperand);
+                console.log(preOperand, postOperand, computedValue);
+                charArr.splice(j - 1, 3, computedValue);
             }
-        } else {
-
         }
     }
-
+    console.log(charArr[0]);
+    if(Number.isInteger(charArr[0])){
+        screen.innerText += charArr[0];
+    } else {
+        screen.innerText += charArr[0].toFixed(3);
+    }
 });
