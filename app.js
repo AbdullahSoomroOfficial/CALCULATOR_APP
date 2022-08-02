@@ -62,12 +62,14 @@ equalTo.addEventListener('click', function () {
                 const preOperand = charArr[j - 1];
                 const postOperand = charArr[j + 1];
                 const computedValue = operations[operators[i]](preOperand, postOperand);
-                console.log(preOperand, postOperand, computedValue);
+                // console.log(preOperand, postOperand, computedValue);
                 charArr.splice(j - 1, 3, computedValue);
+                console.log(charArr);
+                j--;
             }
         }
     }
-    console.log(charArr[0]);
+    // console.log(charArr[0]);
     if(Number.isInteger(charArr[0])){
         screen.innerText += charArr[0];
     } else {
